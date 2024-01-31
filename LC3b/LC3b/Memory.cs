@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace LC3b.LC3b;
 
-namespace LC3bSimulator.LC3b
+public class Memory
 {
-    public class Memory
+
+    #region Eigenschaften
+
+    public ushort[] Data { get; private set; } = new ushort[65535]; // Initialisieren mit 2^16 x 16 Bit
+
+    #endregion
+
+
+    public Memory(string filePath) { LoadInstructionsFromFile(filePath); }
+
+    #region Methoden
+
+    public ushort FetchInstruction(int address) { return Data[address]; }
+
+    public byte ReadByte(int address)
     {
-        public ushort[] Instructions { get; private set; }
+        var wordIndex = address / 2; // Berechne den Wortindex
+        var isHighByte = address % 2 == 0; // Prüfe, ob es das hohe Byte ist
+        var word = Data[wordIndex];
 
-        public Memory(string filePath)
+        if (isHighByte)
         {
-            LoadInstructionsFromFile(filePath);
+            return (byte)(word >> 8 & 0xFF); // Extrahiere das hohe Byte
         }
 
-        private void LoadInstructionsFromFile(string filePath)
-        {
-            var lines = File.ReadAllLines(filePath);
-            Instructions = new ushort[lines.Length];
-            for (int i = 0; i < lines.Length; i++)
-            {
-                Instructions[i] = Convert.ToUInt16(lines[i], 2);
-            }
-        }
-
-        public ushort FetchInstruction(int address)
-        {
-            return Instructions[address];
-        }
+        return (byte)(word & 0xFF); // Extrahiere das niedrige Byte
     }
+
+    #endregion
+
 }

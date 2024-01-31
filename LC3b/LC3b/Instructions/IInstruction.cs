@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace LC3b.LC3b.Instructions;
 
-namespace LC3bSimulator.LC3b.Instructions
+public interface IInstruction
 {
-    public interface IInstruction
-    {
-        void Execute(ushort instruction, Register register);
-    }
+
+    #region Methoden
+
+    void Execute(ushort instruction, Register register, Memory memory);
+
+    #endregion
+
 }
