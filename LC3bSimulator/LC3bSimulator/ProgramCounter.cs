@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 // Repräsentiert den Befehlszähler des LC3b.
 public class ProgramCounter
 {
-    public int Value { get; private set; }
+    public int Value { get; set; }
 
     public ProgramCounter()
     {
