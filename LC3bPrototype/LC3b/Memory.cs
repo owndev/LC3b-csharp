@@ -5,11 +5,11 @@ public class Memory(string filePath)
 
     #region Eigenschaften
 
+    public Loader Loader { get; } = new(filePath);
+
     private ushort[] Data { get; } = new ushort[65535]; // Initialisieren mit 2^16 x 16 Bit
-    public Loader Loader { get; private set; } = new(filePath);
 
     #endregion
-
 
     #region Methoden
 
@@ -21,7 +21,7 @@ public class Memory(string filePath)
         var isHighByte = address % 2 == 0; // Prüfe, ob es das hohe Byte ist
         var word = Data[wordIndex];
 
-        if(isHighByte)
+        if (isHighByte)
         {
             return (byte)(word >> 8 & 0xFF); // Extrahiere das hohe Byte
         }
