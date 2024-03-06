@@ -6,9 +6,8 @@ public class Register
     #region Eigenschaften
 
     public ushort ProgramCounter { get; set; }
-    public ushort[] GeneralPurposeRegisters { get; private set; }
+    public ushort[] GeneralPurposeRegisters { get; private set; } = new ushort[8];
 
     #endregion
 
-    public Register() { GeneralPurposeRegisters = new ushort[8]; }
 }

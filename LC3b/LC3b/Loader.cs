@@ -2,7 +2,7 @@
 
 public class Loader
 {
-    public ushort[] Instructions { get; private set; }
+    public ushort[] Instructions { get; private set; } = [];
 
     public Loader(string filePath)
     {
@@ -24,7 +24,7 @@ public class Loader
             }
         }
         // Stelle sicher, dass das Array die richtige Größe hat
-        Array.Resize(ref Instructions, instructionIndex);
+        Instructions = Instructions.Take(instructionIndex).ToArray();
     }
 
 }

@@ -16,10 +16,10 @@ internal class Program
         // Initialisierung der Simulator-Komponenten
         var memory = new Memory(filePath);
         var register = new Register();
-        var cpu = new Decoder(memory, register);
+        var cpu = new Cpu(memory, register);
 
         // Einfaches Ausführen der geladenen Instruktionen
-        while (register.ProgramCounter < memory.Data.Length) // TODO: Anpassen!
+        while (register.ProgramCounter < memory.Loader.Instructions.Length) // TODO: Anpassen!
         {
             cpu.ExecuteInstruction();
         }

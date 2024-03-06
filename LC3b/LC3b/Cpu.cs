@@ -2,7 +2,7 @@
 
 namespace LC3b.LC3b;
 
-public class Decoder
+public class Cpu
 {
 
     #region Felder
@@ -13,11 +13,11 @@ public class Decoder
 
     #endregion
 
-    public Decoder(Memory memory, Register register)
+    public Cpu(Memory memory, Register register)
     {
         this.memory = memory;
         this.register = register;
-        instructionSet = new Dictionary<int, IInstruction?>();
+        instructionSet = [];
         InitializeInstructionSet();
     }
 
