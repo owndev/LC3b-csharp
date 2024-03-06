@@ -1,8 +1,10 @@
-﻿namespace LC3b.LC3b.Instructions;
+﻿using Instruction_LC3b.CPU;
+
+namespace LC3b.LC3b.Instructions;
 
 internal class LdbInstruction : IInstruction
 {
-    public void Execute(ushort instruction, Register register, Memory memory)
+    public void Execute(ushort instruction, Registers registers, Memory memory)
     {
         var dr = instruction >> 9 & 0x7; // Destination Register
         var baseR = instruction >> 6 & 0x7; // Base Register
@@ -14,7 +16,7 @@ internal class LdbInstruction : IInstruction
             offset6 |= 0xFFC0;
         }
 
-        var effectiveAddress = register.GeneralPurposeRegisters[baseR] + offset6;
+        var effectiveAddress = registers.GeneralPurposeRegisters[baseR] + offset6;
         var value = memory.ReadByte(effectiveAddress); // Lies Byte aus dem Speicher
 
         // Sign Extension für das geladene Byte
@@ -22,6 +24,6 @@ internal class LdbInstruction : IInstruction
             ? (ushort)(value | 0xFF00)
             : value;
 
-        register.GeneralPurposeRegisters[dr] = extendedValue;
+        registers.GeneralPurposeRegisters[dr] = extendedValue;
     }
 }
