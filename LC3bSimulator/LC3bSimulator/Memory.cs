@@ -32,6 +32,11 @@ public class Memory
     {
         data[address] = value;
     }
+
+    public void Display(string value)
+    {
+        Console.WriteLine("Output: " + value);
+    }
 }
 
 

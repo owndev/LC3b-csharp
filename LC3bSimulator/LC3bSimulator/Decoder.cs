@@ -10,7 +10,7 @@ public class Decoder
 {
 
     //Dekodiert und führt die Instruktion aus.
-    public void DecodeAndExecute(int instruction, Register registers, ALU alu, Output output, Memory memory)
+    public void DecodeAndExecute(int instruction, Register registers, ALU alu, Memory memory)
     {
         int opcode = (instruction >> 12) & 0xF;
         switch (opcode)
@@ -31,7 +31,7 @@ public class Decoder
                         imm5 = (imm5 << 27) >> 27; // Korrekte Sign-Erweiterung für 5-Bit-Werte
                         registers[dr] = alu.Add(registers[sr1], imm5); // Führt die Addition aus
                     }
-                    output.Display(registers[dr]);// Gibt das Ergebnis aus
+                    memory.Display("ADD to Register: "+dr+", Value: "+ registers[dr]);// Gibt das Ergebnis aus
                     break;
                 }
             case 0x2: // LDB instruction
@@ -43,7 +43,7 @@ public class Decoder
                     int value = memory.Read(address) & 0xFF; // Liest den Speicher und maskiert das Ergebnis
                     registers[dr] = (value << 24) >> 24; // Korrekte Sign-Erweiterung des gelesenen Bytes
                     SetCC(registers[dr]);// Setzt die Flags
-                    output.Display(registers[dr]);// Gibt das Ergebnis aus
+                    memory.Display("LDB to Register: " + dr + ", Value: " + registers[dr]);// Gibt das Ergebnis aus
                     break;
                 }
             case 0x5: // AND instruction
@@ -63,7 +63,7 @@ public class Decoder
                         registers[dr] = registers[sr1] & imm5;// Führt die logische UND-Operation aus
                     }
                     SetCC(registers[dr]);
-                    output.Display(registers[dr]);
+                    memory.Display("AND to Register: " + dr + ", Value: " + registers[dr]);
                     break;
                 }
                 // Weiterer Code für die anderen Instruktionen...

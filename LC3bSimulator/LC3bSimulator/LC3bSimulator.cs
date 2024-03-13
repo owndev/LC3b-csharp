@@ -12,7 +12,6 @@ public class LC3bSimulator
     private Decoder decoder = new Decoder();
     private Register registers = new Register();
     private ALU alu = new ALU();
-    private Output output = new Output();
 
     // Methode zum Laden von Instruktionen aus einer Datei
     public List<string> LoadInstructionsFromFile(string filepath)
@@ -44,7 +43,7 @@ public class LC3bSimulator
         {
             int instruction = memory.Read(pc.Value);
             ir.LoadInstruction(instruction);
-            decoder.DecodeAndExecute(ir.Value, registers, alu, output, memory);
+            decoder.DecodeAndExecute(ir.Value, registers, alu, memory);
             pc.Increment();
         }
     }

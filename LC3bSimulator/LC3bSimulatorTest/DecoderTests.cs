@@ -13,7 +13,6 @@ namespace LC3bSimulatorTest
         private Decoder _decoder;
         private Register _registers; 
         private ALU _alu;
-        private Output _output;
         private Memory _memory;
 
         [SetUp]
@@ -22,7 +21,6 @@ namespace LC3bSimulatorTest
             // Mock-Objekte für die Abhängigkeiten erstellen
             _registers = new Register();
             _alu = new ALU();
-            _output = new Output();
             _memory = new Memory();
 
             // Eine Instanz des Decoders erstellen, die die Mock-Objekte verwendet
@@ -38,7 +36,7 @@ namespace LC3bSimulatorTest
             _registers[1] = 10;
 
             // Handeln
-            _decoder.DecodeAndExecute(instruction, _registers, _alu, _output, _memory);
+            _decoder.DecodeAndExecute(instruction, _registers, _alu, _memory);
 
             // Überprüfen
             Assert.AreEqual(16, _registers[6]);
