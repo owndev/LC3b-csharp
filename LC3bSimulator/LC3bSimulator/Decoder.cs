@@ -41,7 +41,7 @@ public class Decoder
                     int boffset6 = ((sbyte)(instruction << 26)) >> 26; // Korrekte Sign-Erweiterung für 6-Bit-Werte
                     int address = registers[baseR] + boffset6; // Berechnet die Adresse
                     int value = memory.Read(address) & 0xFF; // Liest den Speicher und maskiert das Ergebnis
-                    registers[dr] = (value << 24) >> 24; // Korrekte Sign-Erweiterung des gelesenen Bytes
+                    registers[dr] =  alu.Ldb(value); // Korrekte Sign-Erweiterung des gelesenen Bytes
                     SetCC(registers[dr]);// Setzt die Flags
                     memory.Display("LDB to Register: " + dr + ", Value: " + registers[dr]);// Gibt das Ergebnis aus
                     break;
@@ -54,7 +54,7 @@ public class Decoder
                     if (!mode)
                     {
                         int sr2 = instruction & 0x7;// Quellregister 2
-                        registers[dr] = registers[sr1] & registers[sr2];// Führt die logische UND-Operation aus
+                        registers[dr] = alu.And(registers[sr1], registers[sr2]);// Führt die logische UND-Operation aus
                     }
                     else
                     {
@@ -76,9 +76,6 @@ public class Decoder
         bool N = value < 0;
         bool Z = value == 0;
         bool P = value > 0;
-
-        // Ausgabe der Flags, nur zu Demonstrationszwecken
-        Console.WriteLine($"N: {N}, Z: {Z}, P: {P}");
     }
 }
 

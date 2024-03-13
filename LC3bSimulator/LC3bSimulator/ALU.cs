@@ -13,6 +13,16 @@ public class ALU
     {
         return value1 + value2;
     }
+
+    public int And(int value1, int value2)
+    {
+        return value1 & value2;
+    }
+
+    public int Ldb(int value)
+    {
+        return (value << 24) >> 24;
+    }
 }
 
 
