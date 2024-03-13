@@ -9,7 +9,7 @@ public class LC3bSimulator
     private ProgramCounter pc = new ProgramCounter();
     private Memory memory = new Memory();
     private InstructionRegister ir = new InstructionRegister();
-    private InstructionsDecoder decoder = new InstructionsDecoder();
+    private Decoder decoder = new Decoder();
     private Register registers = new Register();
     private ALU alu = new ALU();
     private Output output = new Output();
@@ -44,7 +44,7 @@ public class LC3bSimulator
         {
             int instruction = memory.Read(pc.Value);
             ir.LoadInstruction(instruction);
-            decoder.DecodeAndExecute(ir.Value, registers, alu, output);
+            decoder.DecodeAndExecute(ir.Value, registers, alu, output, memory);
             pc.Increment();
         }
     }
