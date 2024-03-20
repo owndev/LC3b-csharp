@@ -72,7 +72,7 @@ public class Decoder
 
     private void SetCC(int value)
     {
-        // Angenommen, N, Z, und P sind global zugängliche Flags. Anpassen, falls notwendig.
+        // Setzt die Flags entsprechend des Ergebnisses
         bool N = value < 0;
         bool Z = value == 0;
         bool P = value > 0;

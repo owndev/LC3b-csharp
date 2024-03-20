@@ -12,14 +12,14 @@ namespace LC3bSimulatorTest
         [Test]
         public void InstructionRegister_ShouldHoldValue_WhenSet()
         {
-            // Arrange
+            //  Vorbereiten
             var ir = new InstructionRegister();
             int testValue = 0x1234; // Test-Instruktion als Hexadezimalwert
 
-            // Act
+            // Ausführen
             ir.Value = testValue;
 
-            // Assert
+            // Überprüfen
             Assert.AreEqual(testValue, ir.Value, "Das InstructionRegister sollte den gesetzten Wert halten.");
         }
     }

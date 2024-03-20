@@ -12,16 +12,16 @@ namespace LC3bSimulatorTest
         [Test]
         public void Memory_ShouldStoreAndRetrieveValue()
         {
-            // Arrange
+            // Vorbereiten
             var memory = new Memory();
             var testAddress = 0x3000; // Test-Adresse
             var testValue = 0x25; // Test-Wert
 
-            // Act
+            // Ausführen
             memory.Write(testAddress, testValue);
             var result = memory.Read(testAddress);
 
-            // Assert
+            // Überprüfen
             Assert.AreEqual(testValue, result, "Der Speicher sollte den gespeicherten Wert korrekt abrufen.");
         }
     }

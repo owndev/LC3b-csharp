@@ -18,24 +18,22 @@ namespace LC3bSimulatorTest
         [SetUp]
         public void Setup()
         {
-            // Mock-Objekte für die Abhängigkeiten erstellen
+            // Instanz von Decoder, Register, ALU und Memory erstellen
             _registers = new Register();
             _alu = new ALU();
             _memory = new Memory();
-
-            // Eine Instanz des Decoders erstellen, die die Mock-Objekte verwendet
             _decoder = new Decoder();
         }
 
         [Test]
         public void DecodeAndExecute_AddInstruction_AddsCorrectly()
         {
-            // Arrangieren
+            // Vorbereiten
             int instruction = 0x1C40; // Beispiel für eine ADD-Instruktion
             _registers[0] = 6; // Setzen Sie die Registerwerte direkt
             _registers[1] = 10;
 
-            // Handeln
+            // Ausführen
             _decoder.DecodeAndExecute(instruction, _registers, _alu, _memory);
 
             // Überprüfen

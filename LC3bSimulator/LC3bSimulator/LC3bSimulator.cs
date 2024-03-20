@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 public class LC3bSimulator
 {
+    // Instanzen der Komponenten des Simulators
     private ProgramCounter pc = new ProgramCounter();
     private Memory memory = new Memory();
     private InstructionRegister ir = new InstructionRegister();
@@ -38,12 +39,18 @@ public class LC3bSimulator
     //Ausführen des Simulators
     public void Run(string[] instructions)
     {
+        // Lädt die Instruktionen in den Speicher
         memory.LoadInstructions(instructions);
+        // Führt die Instruktionen aus
         while (pc.Value < instructions.Length)
         {
+            // Liest die Instruktion aus dem Speicher
             int instruction = memory.Read(pc.Value);
+            // Lädt die Instruktion in das Instruktionsregister
             ir.LoadInstruction(instruction);
+            // Dekodiert und führt die Instruktion aus
             decoder.DecodeAndExecute(ir.Value, registers, alu, memory);
+            // Inkrementiert den Program Counter
             pc.Increment();
         }
     }

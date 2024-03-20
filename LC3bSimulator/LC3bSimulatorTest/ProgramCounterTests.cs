@@ -12,15 +12,15 @@ namespace LC3bSimulatorTest
         [Test]
         public void ProgramCounter_ShouldIncrementCorrectly()
         {
-            // Arrange
+            // Vorbereiten
             var pc = new ProgramCounter();
             var initialValue = 0x3000; // Startwert des ProgramCounters
             pc.Value = initialValue;
 
-            // Act
+            // Ausführen
             pc.Increment(); // Erhöhung um 1
 
-            // Assert
+            // Überprüfen
             Assert.AreEqual(initialValue + 1, pc.Value, "Der ProgramCounter sollte korrekt inkrementiert werden.");
         }
     }

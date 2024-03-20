@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 // Repräsentiert die Register des LC3b.
 public class Register
 {
+    // Die Register des LC3b.
     private int[] registers = new int[8];
 
     // Gibt den Wert des Registers mit dem angegebenen Index zurück oder legt diesen fest.

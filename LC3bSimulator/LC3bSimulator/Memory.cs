@@ -33,6 +33,7 @@ public class Memory
         data[address] = value;
     }
 
+    // Gibt den Inhalt des Wertes aus.
     public void Display(string value)
     {
         Console.WriteLine("Output: " + value);
